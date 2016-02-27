@@ -39,6 +39,14 @@
       </div>
 
 	<div ng-controller="MusicSearchCtrl" class="music-search">
+
+		<div class="playlist">
+			<div ng-repeat="song in playlist track by song.id">
+				<span class="song-title">{{song.title}}</span> -- {{song.artist}}
+				<button class="remove-button" ng-click="remove(song">-</button>
+			</div>
+		</div>
+
 		<div class="search-bar">
 			<form ng-submit="search(query)">
 				<label>Search for Songs</label>
@@ -47,7 +55,8 @@
 		</div>
 		<div class="search-results">
 			<div class="search-result" ng-repeat="song in songs track by song.id">
-				<span class="song-title">{{song.title}}</span> -- {{song.artist}}
+				<span class="song-title">{{song.title}}</span> -- {{song.artist}} <play-button url="{{song.url}}"></play-button>
+				<button class="add-button" ng-click="add(song)">+</button>
 			</div>
 		</div>
 	</div>
@@ -75,6 +84,7 @@
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
+	<script src="/bower_components/lodash/lodash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     
