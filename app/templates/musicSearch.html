@@ -1,4 +1,10 @@
-<div class="music-search">
+<div ng-controller="MusicSearchCtrl" class="music-search">
+	<div class="playlist">
+		<div ng-repeat="song in playlist track by song.id">
+			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
+			<button class="remove-button" ng-click="remove(song">-</button>
+		</div>
+	</div>
 	<div class="search-bar">
 		<form ng-submit="search(query)">
 			<label>Search for Songs</label>
@@ -6,7 +12,7 @@
 		</form>
 	</div>
 	<div class="search-results">
-		<div class="search-result" ng-repeat="for song in songs">
+		<div class="search-result" ng-repeat="song in songs track by song.id">
 			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
 		</div>
 	</div>

@@ -45,13 +45,19 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('html', ['styles', 'scripts'], () => {
+gulp.task('html', ['styles', 'scripts', 'templates'], () => {
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.cssnano()))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('templates', () => {
+  return gulp.src('app/templates/*.html')
+      .pipe($.htmlmin({collapseWhitespace: true}))
+      .pipe(gulp.dest('dist/templates'));
 });
 
 gulp.task('images', () => {
@@ -84,7 +90,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
+gulp.task('serve', ['html', 'styles', 'scripts', 'fonts'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -98,6 +104,7 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
 
   gulp.watch([
     'app/*.html',
+    'app/templates/*.html',
     'app/images/**/*',
     '.tmp/fonts/**/*'
   ]).on('change', reload);
