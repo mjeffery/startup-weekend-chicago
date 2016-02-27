@@ -1,27 +1,6 @@
 console.log('\'Allo \'Allo!');
 
-angular.module('gift-tapes', ['ngRoute', 'ngSanitize'])
-	.config(['$routeProvider',
-		function($routeProvider) {
-			$routeProvider
-				.when('/share/:id', {
-					templateUrl: 'templates/playlists.html',
-					controller: 'PlaylistsCtrl',
-					resolve: {
-						playlist: function($q, $routeParams, Shares){
-							$q(function(resolve, reject) {
-								Shares.get($routeParams.id, resolve, reject)
-							})
-						}
-					}
-				})
-				.otherwise({
-					redirectTo: '/'
-				});
-	}])
-	.config(function ($sceProvider) {
-		$sceProvider.enabled(false);
-	})
+angular.module('gift-tapes', ['ngRoute'])
 	.factory('userId', function(){
 		var userId = 1;
 
