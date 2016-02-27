@@ -8,7 +8,7 @@
 	<div class="search-bar">
 		<form ng-submit="search(query)">
 			<label>Search for Songs</label>
-			<input ng-model="query">
+			<input ng-model="query" ng-model-options="{ debounce: 250 }">
 		</form>
 	</div>
 	<div class="search-results">

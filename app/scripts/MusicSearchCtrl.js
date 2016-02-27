@@ -16,11 +16,19 @@ angular.module('gift-tapes')
 	$scope.songs = [];
 
 	$scope.search = function(query) {
-		soundCloudSearchService.find(query)
-			.then(function(results) {
-				$scope.songs = results;
-			});
+		if(!query)
+			$scope.songs = [];
+		else {
+			soundCloudSearchService.find(query)
+				.then(function(results) {
+					$scope.songs = results;
+				});
+		}
 	};
+
+	$scope.$watch('query', function(newVal, oldVal) {
+		$scope.search(newVal);
+	});
 
 	$scope.add = function(song) {
 		if(!_.some($scope.playlist, { id: song.id }))
