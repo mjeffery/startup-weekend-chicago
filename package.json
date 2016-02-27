@@ -17,8 +17,7 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "tiny-uuid4": "^1.0.1",
-    "pg" : "4.x",
-    "serve-favicon": "~2.3.0"
+    "pg" : "4.x"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
