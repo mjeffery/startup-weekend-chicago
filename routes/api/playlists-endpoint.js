@@ -8,11 +8,6 @@ function error(res, err){
     res.status(500).send({message:err});
 }
 
-router.use('/', function(req, res, next){
-    req.user = req.query.userId;
-    next();
-});
-
 router.get('/playlists', function(req, res, next) {
     playlists.getPlaylists(req.user)
         .then(function(list){
