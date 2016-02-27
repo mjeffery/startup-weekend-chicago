@@ -37,6 +37,8 @@ var Playlists = function(){
         doesPlayListExist(userId, playlistId);
 
         data[userId][playlistId]['songs'].push(url);
+
+        return data[userId][playlistId];
     }
 
     function doesUserExist(userId) {
