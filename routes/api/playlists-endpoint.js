@@ -5,7 +5,7 @@ var Playlists = require('../../data/playlists');
 var playlists = Playlists();
 
 function error(res, err){
-    res.status(500).json({message:err});
+    res.status(500).json({message:err.message});
 }
 
 router.use('/playlists', function(req, res, next){
