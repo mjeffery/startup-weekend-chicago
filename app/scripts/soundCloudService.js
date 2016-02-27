@@ -6,6 +6,21 @@ angular.module('gift-tapes')
 		redirect_uri: 'http://localhost:9000/soundcloud-auth-cb.html'
 	});
 
+	/**
+	 * @name Song
+	 *
+	 * @type {{
+     *      title: string,
+     *      streamUrl: string,
+     *      author: string
+     * }}
+	 */
+
+	/**
+	 *
+	 * @param query string
+	 * @returns {Promise.<Song>}
+	 */
 	function find(query) {
 		var retVal = SC.get('/tracks', {
 			q: query,
