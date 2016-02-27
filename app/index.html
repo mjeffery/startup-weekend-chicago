@@ -28,7 +28,7 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     
-    <div class="container">
+    <div ng-app="gift-tapes" class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
@@ -39,10 +39,14 @@
       </div>
 
       <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
-      </div>
+		  <label>Name:</label>
+		  <input type="text" ng-model="yourName" placeholder="Enter a name here">
+		  <hr>
+		  <h1>Hello {{yourName}}!</h1>
+		  <div ng-controller="DoesItWorkCtrl">
+			  it works? {{itWorks}}
+		  </div>
+	  </div>
 
       <div class="row marketing">
         <div class="col-lg-6">
@@ -75,6 +79,7 @@
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     
