@@ -1,9 +1,9 @@
 angular.module('gift-tapes')
 
-.controller('MusicSearchCtrl', function($scope, soundCloudSearchService) {
+.controller('MusicSearchCtrl', function($scope, soundCloudService) {
 	$scope.songs = [];
 	$scope.search = function(query) {
-		soundCloudSearchService.find(query)
+		soundCloudService.find(query)
 			.then(function(results) {
 				$scope.songs = results;
 			});

@@ -1,6 +1,6 @@
 angular.module('gift-tapes')
 
-.service('soundCloudSearchService', function($q) {
+.service('soundCloudService', function($q) {
 	SC.initialize({
 		client_id: '7e01342942e42d7d02020e8abb81cdd4',
 		redirect_uri: 'http://localhost:9000/soundcloud-auth-cb.html'
@@ -26,7 +26,13 @@ angular.module('gift-tapes')
 		return $q.when(retVal);
 	}
 
+	function player(songId) {
+		var retVal = SC.stream('/tracks/' + songId);
+		return $q.when(retVal);
+	}
+
 	return {
-		find: find
+		find: find,
+		player: player
 	};
 });

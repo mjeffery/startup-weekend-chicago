@@ -8,6 +8,7 @@
 	<div class="search-results">
 		<div class="search-result" ng-repeat="song in songs track by song.id">
 			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
+			<play-button id="{{song.id}}"></play-button>
 		</div>
 	</div>
 </div>

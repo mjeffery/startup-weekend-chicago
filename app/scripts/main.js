@@ -1,6 +1,6 @@
 console.log('\'Allo \'Allo!');
 
-angular.module('gift-tapes', ['ngRoute'])
+angular.module('gift-tapes', ['ngRoute', 'ngSanitize'])
 	.config(['$routeProvider',
 		function($routeProvider) {
 			$routeProvider
@@ -19,6 +19,9 @@ angular.module('gift-tapes', ['ngRoute'])
 					redirectTo: '/'
 				});
 	}])
+	.config(function ($sceProvider) {
+		$sceProvider.enabled(false);
+	})
 	.factory('userId', function(){
 		var userId = 1;
 
