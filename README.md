@@ -1,8 +1,7 @@
 # startup-weekend-chicago
 # Make America Great Again
 
-# Do once: heroku create
+# Do once: git remote add heroku git@github.com:mjeffery/startup-weekend-chicago.git
 # Do often: npm install
-# To push to your own heroku: git push heroku master
-# To run locally: heroku local web
-# To run schema changes in heroku: cat db/file.sql | heroku pg:psql
+# To push to heroku: git push heroku master
+# To run schema changes in heroku: cat data/schema.sql | heroku pg:psql
