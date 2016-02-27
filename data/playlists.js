@@ -18,11 +18,27 @@ var Playlists = function(){
     }
 
     function getPlaylists(userId){
-        if(!data.hasOwnProperty(userId)) {
-            throw Errors.UserNotFound
-        }
+        var results = [];
 
-        return data[userId]
+        pg.connect(connectionString, function(err, client, done) {
+            if(err) {
+                done();
+                console.log(err);
+                return { success: false, data: err};
+            }
+
+            var query = client.query("SELECT * FROM playlist WHERE user_id=($1)", [userId]);
+
+            query.on('row', function(row) {
+                results.push(row);
+            });
+
+            query.on('end', function() {
+                done();
+                return results;
+            });
+
+        });
     }
 
     function getPlaylist(userId, playlistId){
