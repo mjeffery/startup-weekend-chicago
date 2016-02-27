@@ -27,7 +27,7 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
+
     <div ng-app="gift-tapes" class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
@@ -38,19 +38,7 @@
         <h3 class="text-muted">temp</h3>
       </div>
 
-	<div ng-controller="MusicSearchCtrl" class="music-search">
-		<div class="search-bar">
-			<form ng-submit="search(query)">
-				<label>Search for Songs</label>
-				<input ng-model="query">
-			</form>
-		</div>
-		<div class="search-results">
-			<div class="search-result" ng-repeat="song in songs track by song.id">
-				<span class="song-title">{{song.title}}</span> -- {{song.artist}}
-			</div>
-		</div>
-	</div>
+      <div ng-include="'templates/musicSearch.html'"></div>
 
 	  <div class="canvas-test">
 		  <gt-drawing width="640" height="480"></gt-drawing>

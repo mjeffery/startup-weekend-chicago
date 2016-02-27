@@ -2,14 +2,23 @@ angular.module('gift-tapes')
 
 .service('soundCloudSearchService', function($q) {
 	function find(query) {
-		var deferred = $q.defer();
+		var retVal = SC.get('/tracks', {
+			q: query,
+			streamable: true
+		}).then(function (tracks) {
+			var songs = [];
+			tracks.forEach((track) => {
+				songs.push({
+					title: track.title,
+					id: track.id,
+					streamUrl: track.stream_url,
+					artist: track.user.username
+				});
+			});
+			return songs;
+		});
 
-		//TODO deferred.resolve() with the result of the query
-		//TODO deferred.reject() with the error
-		
-		deferred.resolve([{ id: 24566, title: 'Never Gonna Give You Up', artist: 'Rick Astley' }]);
-
-		return deferred.promise;
+		return $q.when(retVal);
 	}
 
 	return {
