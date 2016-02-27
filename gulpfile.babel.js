@@ -4,6 +4,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
+var ngAnnotate = require('gulp-ng-annotate');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -20,6 +21,7 @@ gulp.task('styles', () => {
 gulp.task('scripts', () => {
   return gulp.src('app/scripts/**/*.js')
     .pipe($.plumber())
+    .pipe(ngAnnotate())
     .pipe($.sourcemaps.init())
     .pipe($.babel())
     .pipe($.sourcemaps.write('.'))
@@ -155,7 +157,9 @@ gulp.task('wiredep', () => {
 });
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras'], () => {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp
+      .src('dist/**/*')
+      .pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], () => {

@@ -37,7 +37,10 @@
         </ul>
         <h3 class="text-muted">temp</h3>
       </div>
+
       <div ng-include="'templates/musicSearch.html'"></div>
+
+      <div ng-view></div>
 
 	  <div class="canvas-test">
 		  <gt-drawing width="640" height="480"></gt-drawing>
@@ -58,12 +61,16 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/lodash/lodash.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
-	<script src="/bower_components/lodash/lodash.js"></script>
-	<script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+
     <!-- endbower -->
     <!-- endbuild -->
     
@@ -81,14 +88,13 @@
     <script src="/bower_components/bootstrap/js/collapse.js"></script>
     <script src="/bower_components/bootstrap/js/tab.js"></script>
     <!-- endbuild -->
-    
     <!-- build:js scripts/main.js -->
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
     <!--<script src="scripts/sc.js"></script>-->
     <script src="scripts/main.js"></script>
+    <script src="scripts/sc.js"></script>
     <script src="scripts/router.js"></script>
 	<script src="scripts/drawing.js"></script>
-	<script src="scripts/soundCloudSearchService.js"></script>
+	<script src="scripts/soundCloudService.js"></script>
 	<script src="scripts/MusicSearchCtrl.js"></script>
 	<script src="scripts/playButton.js"></script>
     <!-- endbuild -->

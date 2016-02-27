@@ -1,9 +1,12 @@
 angular.module('gift-tapes', ['ngRoute'])
+    .config(function ($locationProvider){
+        $locationProvider.html5Mode(false).hashPrefix('!');
+    })
     .config(['$routeProvider',
         function($routeProvider) {
             $routeProvider
                 .when('/shares/:id', {
-                    templateUrl: 'templates/playlists.html',
+                    templateUrl: 'templates/playlist.html',
                     controller: 'PlaylistsCtrl',
                     resolve: {
                         playlist: function($q, $routeParams, Shares){
@@ -16,4 +19,4 @@ angular.module('gift-tapes', ['ngRoute'])
                 .otherwise({
                     redirectTo: '/'
                 });
-        }])
+        }]);

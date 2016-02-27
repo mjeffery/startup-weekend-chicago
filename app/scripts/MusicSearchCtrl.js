@@ -11,7 +11,7 @@ angular.module('gift-tapes')
 	}
 })
 
-.controller('MusicSearchCtrl', function($scope, soundCloudSearchService, notInListFilter) {
+.controller('MusicSearchCtrl', function($scope, soundCloudService, notInListFilter) {
 	$scope.playlist = [];
 	$scope.songs = [];
 
@@ -19,7 +19,7 @@ angular.module('gift-tapes')
 		if(!query)
 			$scope.songs = [];
 		else {
-			soundCloudSearchService.find(query)
+			soundCloudService.find(query)
 				.then(function(results) {
 					$scope.songs = results;
 				});
@@ -34,10 +34,10 @@ angular.module('gift-tapes')
 		if(!_.some($scope.playlist, { id: song.id }))
 			$scope.playlist.push(song);
 	}
-	
+
 	$scope.remove = function(song) {
 		var idx = _.findIndex($scope.playlist, { id: song.id });
-		if(idx >= 0) 
+		if(idx >= 0)
 			$scope.playlist.splice(idx, 1);
 	}
 });

@@ -18,6 +18,7 @@
 		<div class="search-result" ng-repeat="song in songs|notInList:playlist track by song.id">
 			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
 			<button ng-click="add(song)" class="add-button">+</button>
+			<play-button id="{{song.id}}"></play-button>
 		</div>
 	</div>
 </div>
