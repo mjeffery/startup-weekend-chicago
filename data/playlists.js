@@ -62,4 +62,4 @@ var Playlists = function(){
     };
 };
 
-exports = Playlists;
+module.exports = Playlists;
