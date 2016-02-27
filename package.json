@@ -6,6 +6,9 @@
     "start": "gulp serve",
     "postinstall": "bower install"
   },
+  "engines": {
+    "node": "5.7.0"
+  },
   "dependencies": {
     "bluebird": "^3.3.3",
     "body-parser": "~1.13.2",
