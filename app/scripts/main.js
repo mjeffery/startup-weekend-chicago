@@ -35,7 +35,6 @@ angular.module('gift-tapes', ['ngRoute'])
 	.factory('Shares', function($resource){
 		return $resource('/api/shares/:id');
 	})
-	.controller('AppController', Controller)
 	.controller('DoesItWorkCtrl', function($scope) {
 		$scope.itWorks = true;
 	});
