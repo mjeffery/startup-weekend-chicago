@@ -1,0 +1,8 @@
+{
+  "name": "SWChicago App for team cool",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com/mjeffery/startup-weekend-chicago",
+  "logo": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTC6SbOVAHwNDZISS6VAe6Cu-Qotan8dLs30aFFU_ezdpN5d3YW",
+  "keywords": ["node", "express", "static"],
+  "image": "heroku/nodejs"
+}
