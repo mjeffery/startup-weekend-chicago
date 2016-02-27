@@ -8,8 +8,13 @@ function error(res, err){
     res.status(500).send({message:err});
 }
 
+router.use('/', function(req, res, next){
+    req.userId = req.query.userId;
+    next();
+});
+
 router.get('/playlists', function(req, res, next) {
-    playlists.getPlaylists(req.user)
+    playlists.getPlaylists(req.userId)
         .then(function(list){
             res.json({playlists: list});
         }, function(err){
@@ -33,7 +38,7 @@ router.put('/playlists', function(req, res, next) {
 router.get('/playlists/:playlistId', function(req, res, next){
     var playlistId = req.params.playlistId;
 
-    playlists.getPlaylist(req.user, playlistId)
+    playlists.getPlaylist(req.userId, playlistId)
         .then(function(list){
             res.json({playlist: list});
         }, function(err){
