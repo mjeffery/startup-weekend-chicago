@@ -57,6 +57,4 @@ router.put('/playlists/:playlistId', function(req, res, next){
         });
 });
 
-router.get()
-
 module.exports = router;
