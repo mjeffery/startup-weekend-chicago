@@ -11,10 +11,10 @@ angular.module('gift-tapes', ['ngRoute'])
 		};
 	})
 	.factory('Shares', function($resource){
-		return $resource('/api/shares/:id');
+		return $resource('/api/shares/:id', {userId: '@userId'});
 	})
-	.factory('Playlist', {
-
+	.factory('Playlist', function($resource){
+		return $resource('/api/playlists/:id', {userId: '@userId'});
 	})
 	.controller('DoesItWorkCtrl', function($scope) {
 		$scope.itWorks = true;
