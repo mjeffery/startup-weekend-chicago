@@ -3,5 +3,6 @@
 
 # Do once: git remote add heroku git@github.com:mjeffery/startup-weekend-chicago.git
 # Do often: npm install
+# To start locally: npm start
 # To push to heroku: git push heroku master
 # To run schema changes in heroku: cat data/schema.sql | heroku pg:psql
