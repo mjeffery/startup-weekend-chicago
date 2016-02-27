@@ -12,10 +12,13 @@ angular.module('gift-tapes', ['ngRoute'])
 			userId = id;
 		}
 
-		return {getUserId, setUserId}
+		return {getUserId: getUserId, setUserId: setUserId}
 	})
 	.factory('Shares', function($resource){
 		return $resource('/api/shares/:id');
+	})
+	.factory('Playlist', {
+
 	})
 	.controller('DoesItWorkCtrl', function($scope) {
 		$scope.itWorks = true;
