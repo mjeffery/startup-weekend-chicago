@@ -22,7 +22,7 @@ router.get('/playlists', function(req, res, next) {
         });
 });
 
-router.put('/playlists', function(req, res, next) {
+router.post('/playlists', function(req, res, next) {
 
     var id = playlists.addPlaylist(req.userId)
         .then(function(id){
@@ -46,7 +46,7 @@ router.get('/playlists/:playlistId', function(req, res, next){
         });
 });
 
-router.put('/playlists/:id', function(req, res, next){
+router.post('/playlists/:id', function(req, res, next){
     var playlistId = req.params.id;
     var url = req.params.url;
     playlists.addSong(req.userId, playlistId, url)
@@ -57,7 +57,7 @@ router.put('/playlists/:id', function(req, res, next){
         });
 });
 
-router.put('/share/', function(req, res, next) {
+router.post('/shares/', function(req, res, next) {
     var id = req.query.playlistId;
     playlists.createShare(req.userId, id)
         .then(function(id){
@@ -67,7 +67,7 @@ router.put('/share/', function(req, res, next) {
         });
 });
 
-router.get('/share/:id', function(req, res, next) {
+router.get('/shares/:id', function(req, res, next) {
     var id = req.params.id;
     playlists.getShare(id)
         .then(function(list){
