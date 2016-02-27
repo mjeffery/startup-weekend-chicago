@@ -4,15 +4,11 @@ angular.module('gift-tapes', ['ngRoute'])
 	.factory('userId', function(){
 		var userId = 1;
 
-		function getUserId(){
-			return userId;
-		}
-
-		function setUserId(id){
-			userId = id;
-		}
-
-		return {getUserId: getUserId, setUserId: setUserId}
+		return function(id){
+			if(id){
+				userId = id;
+			} else return userId;
+		};
 	})
 	.factory('Shares', function($resource){
 		return $resource('/api/shares/:id');
