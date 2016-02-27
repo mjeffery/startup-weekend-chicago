@@ -16,3 +16,5 @@ CREATE TABLE IF NOT EXISTS song (
     id SERIAL PRIMARY KEY,
     playlist_id int REFERENCES playlist(id)
 );
+
+ALTER TABLE user2 ADD name text;
