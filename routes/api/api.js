@@ -5,3 +5,5 @@ var playlists = require('./playlists-endpoint');
 
 router.use('/api', playlists);
 
+module.exports = router;
+
