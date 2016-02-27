@@ -2,3 +2,17 @@ CREATE TABLE IF NOT EXISTS test_table (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS user {
+    id SERIAL PRIMARY KEY
+};
+
+CREATE TABLE IF NOT EXISTS playlist {
+    id SERIAL PRIMARY KEY,
+    user_id NOT NULL
+};
+
+CREATE TABLE IF NOT EXISTS song {
+    id SERIAL PRIMARY KEY,
+    playlist_id NOT NULL
+};
