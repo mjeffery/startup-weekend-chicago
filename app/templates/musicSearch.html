@@ -1,0 +1,13 @@
+<div class="music-search">
+	<div class="search-bar">
+		<form ng-submit="search(query)">
+			<label>Search for Songs</label>
+			<input ng-model="query">
+		</form>
+	</div>
+	<div class="search-results">
+		<div class="search-result" ng-repeat="for song in songs">
+			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
+		</div>
+	</div>
+</div>
