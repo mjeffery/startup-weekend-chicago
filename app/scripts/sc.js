@@ -13,9 +13,35 @@ window.sc = function() {
         });
     }
 
+    /**
+     * @name Song
+     *
+     * @type {{
+     *      title: string,
+     *      streamUrl: string,
+     *      author: string
+     * }}
+     */
+
+    /**
+     *
+     * @param songName string
+     * @returns {Promise.<Song>}
+     */
     function search(songName) {
         return SC.get('/tracks', {
-            q: songName
+            q: songName,
+            streamable: true
+        }).then(function (tracks) {
+            var songs = [];
+            tracks.forEach((track) => {
+                songs.push({
+                    title: track.title,
+                    streamUrl: track.stream_url,
+                    author: track.user.username
+                });
+            });
+            return songs;
         });
     }
 
