@@ -2,7 +2,7 @@
 	<div class="playlist">
 		<div ng-repeat="song in playlist track by song.id">
 			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
-			<button class="remove-button" ng-click="remove(song">-</button>
+			<button class="remove-button" ng-click="remove(song)">-</button>
 		</div>
 	</div>
 	<div class="search-bar">
@@ -12,8 +12,9 @@
 		</form>
 	</div>
 	<div class="search-results">
-		<div class="search-result" ng-repeat="song in songs track by song.id">
+		<div class="search-result" ng-repeat="song in songs|notInList:playlist track by song.id">
 			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
+			<button ng-click="add(song)" class="add-button">+</button>
 		</div>
 	</div>
 </div>
