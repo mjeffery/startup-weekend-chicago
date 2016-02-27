@@ -57,7 +57,7 @@ router.put('/playlists/:id', function(req, res, next){
         });
 });
 
-router.put('/share/', function(req, res, next) {
+router.put('/shares/', function(req, res, next) {
     var id = req.query.playlistId;
     playlists.createShare(req.userId, id)
         .then(function(id){
@@ -67,7 +67,7 @@ router.put('/share/', function(req, res, next) {
         });
 });
 
-router.get('/share/:id', function(req, res, next) {
+router.get('/shares/:id', function(req, res, next) {
     var id = req.params.id;
     playlists.getShare(id)
         .then(function(list){

@@ -1,14 +1,18 @@
 console.log('\'Allo \'Allo!');
 
-angular.module('gift-tapes', [])
+angular.module('gift-tapes', ['ngRoute'])
 	.config(['$routeProvider',
 		function($routeProvider) {
 			$routeProvider
-				.when('/playlists', {
+				.when('/share/:id', {
 					templateUrl: 'templates/playlists.html',
 					controller: 'PlaylistsCtrl',
 					resolve: {
-						playlists
+						playlist: function($q, $routeParams, Shares){
+							$q(function(resolve, reject) {
+								Shares.get($routeParams.id, resolve, reject)
+							})
+						}
 					}
 				})
 				.otherwise({
@@ -26,8 +30,12 @@ angular.module('gift-tapes', [])
 			userId = id;
 		}
 
-		return
+		return {getUserId, setUserId}
 	})
+	.factory('Shares', function($resource){
+		return $resource('/api/shares/:id');
+	})
+	.controller('AppController', Controller)
 	.controller('DoesItWorkCtrl', function($scope) {
 		$scope.itWorks = true;
 	});
