@@ -5,10 +5,10 @@ var Playlists = require('../../data/playlists');
 var playlists = Playlists();
 
 function error(res, err){
-    res.status(500).send({message:err});
+    res.status(500).json({message:err.message});
 }
 
-router.use('/', function(req, res, next){
+router.use('/playlists', function(req, res, next){
     req.userId = req.query.userId;
     next();
 });
@@ -46,12 +46,32 @@ router.get('/playlists/:playlistId', function(req, res, next){
         });
 });
 
-router.put('/playlists/:playlistId', function(req, res, next){
-    var playlistId = req.params.playlistId;
+router.put('/playlists/:id', function(req, res, next){
+    var playlistId = req.params.id;
     var url = req.params.url;
     playlists.addSong(req.userId, playlistId, url)
         .then(function(list){
             res.json({id: playlistId, playlist: list});
+        }, function(err){
+            error(res, err);
+        });
+});
+
+router.put('/share/', function(req, res, next) {
+    var id = req.query.playlistId;
+    playlists.createShare(req.userId, id)
+        .then(function(id){
+            res.json({share: id});
+        }, function(err){
+            error(res, err);
+        });
+});
+
+router.get('/share/:id', function(req, res, next) {
+    var id = req.params.id;
+    playlists.getShare(id)
+        .then(function(list){
+            res.json({playlists: list});
         }, function(err){
             error(res, err);
         });

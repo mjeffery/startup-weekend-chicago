@@ -4,6 +4,7 @@ var Promise = require("bluebird");
 
 var Playlists = function(){
     var data = {};
+    var shares = {};
 
     function addPlaylist(userId){
         var id = uuid();
@@ -53,12 +54,35 @@ var Playlists = function(){
         }
     }
 
+    function createShare(userId, playlistId){
+        doesUserExist(userId);
+        doesPlayListExist(userId, playlistId);
+
+        var id = uuid();
+
+        data[userId][playlistId]['shareId'] = id;
+
+        shares[id] = {
+            userId,
+            playlistId
+        };
+
+        return id;
+    }
+
+    function getShare(id){
+        var share = shares[id];
+
+        return getPlaylist(share.userId, share.playlistId);
+    }
+
     return {
         addPlaylist: Promise.promisify(addPlaylist),
         getPlaylists: Promise.promisify(getPlaylists),
         getPlaylist: Promise.promisify(getPlaylist),
-        addSong: Promise.promisify(addSong)
-
+        addSong: Promise.promisify(addSong),
+        createShare: Promise.promisify(createShare),
+        getShare: Promise.promisify(getShare)
     };
 };
 

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp serve",
+    "start": "supervisor ./bin/www",
     "postinstall": "bower install --config.interactive=false && gulp build"
   },
   "engines": {
@@ -44,6 +44,7 @@
     "gulp-uglify": "^1.1.0",
     "gulp-useref": "^3.0.0",
     "main-bower-files": "^2.5.0",
+    "supervisor": "0.9.1",
     "wiredep": "^2.2.2"
   },
   "eslintConfig": {
