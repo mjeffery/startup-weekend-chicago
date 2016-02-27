@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./bin/www",
-    "postinstall": "bower install"
+    "start": "gulp serve",
+    "postinstall": "bower install --config.interactive=false && gulp build"
   },
   "engines": {
     "node": "5.7.0"
