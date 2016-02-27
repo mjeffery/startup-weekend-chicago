@@ -3,7 +3,7 @@ var router = express.Router();
 
 var playlists = require('./playlists-endpoint');
 
-router.use('/api', playlists);
+router.use('/', playlists);
 
 module.exports = router;
 

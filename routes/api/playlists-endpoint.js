@@ -5,10 +5,10 @@ var Playlists = require('../../data/playlists');
 var playlists = Playlists();
 
 function error(res, err){
-    res.status(500).send({message:err});
+    res.status(500).json({message:err});
 }
 
-router.use('/', function(req, res, next){
+router.use('/playlists', function(req, res, next){
     req.userId = req.query.userId;
     next();
 });
