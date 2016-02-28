@@ -1,0 +1,27 @@
+<div ng-controller="PlaylistsCtrl" class="music-search">
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><h1>{{albumTitle}}</h1></h3>
+        </div>
+        <div class="panel-body">
+            <img src="{{albumImageUrl}}" alt="..." style="width:100%">
+        </div>
+    </div>
+
+
+
+    <div class="panel panel-default">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="song in playlist track by song.id">
+                <div class="cover-art pull-left">
+                    <play-button id="{{song.id}}"></play-button>
+                    <img src="{{song.imageUrl}}" alt="..." class="img-rounded">
+                </div>
+                <span class="song-title">{{song.title}} <br> <small>{{song.artist}}</small></span>
+            </li>
+        </ul>
+    </div>
+</div>
