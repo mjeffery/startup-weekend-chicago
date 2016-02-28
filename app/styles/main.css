@@ -9,6 +9,7 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+    color: #535353;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -148,17 +149,38 @@ body {
     color: #bdbdbd;
 }
 
+.cover-art play-button .btn-link:hover, .cover-art play-button .btn-link:focus {
+    color: white;
+}
+
 .cover-art img {
     height: 55px;
     width: 55px;
     position: absolute;
 }
 
-.right-button {
+.add-button, .remove-button {
     height:55px;
-    line-height: 55px;
 }
 
-.btn-link:hover, .btn-link:focus {
-    color: white;
+.add-button button {
+    color: #E7679B
+}
+
+.add-button button.btn-link:hover, .add-button button.btn-link:focus {
+    color: #bd6788
+}
+
+.remove-button button {
+    color: #36C0D9
+}
+
+.remove-button button.btn-link:hover, .remove-button button.btn-link:focus {
+    color: #3e9ad9
+}
+
+
+ul.list-group.search-results li {
+    background-color: #FAFAFA;
+    color: #686868;
 }
