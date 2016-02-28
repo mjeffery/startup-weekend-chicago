@@ -26,7 +26,7 @@ var Playlists = function(){
                 if(err) {
                     return console.error('error fetching client from pool', err);
                 }
-                client.query('SELECT * FROM playlist WHERE user_id = 1', function(err, result) {
+                client.query('SELECT * FROM playlist WHERE user_id = $1', [userId], function(err, result) {
                     done();
 
                     if(err) {
@@ -39,10 +39,22 @@ var Playlists = function(){
     }
 
     function getPlaylist(userId, playlistId){
-        doesUserExist(userId);
-        doesPlayListExist(userId, playlistId);
 
-        return data[userId][playlistId];
+        return new Promise(function(resolve){
+            pg.connect(connectionString, function(err, client, done) {
+                if(err) {
+                    return console.error('error fetching client from pool', err);
+                }
+                client.query('SELECT * FROM playlist WHERE user_id = $1 and id = $2', [userId, playlistId], function(err, result) {
+                    done();
+
+                    if(err) {
+                        return console.error('error running query', err);
+                    }
+                    resolve(result.rows);
+                });
+            });
+        });
     }
 
     function addSong(userId, playlistId, url){
