@@ -8,6 +8,7 @@
 		</ul>
 	</div>
 	<div class="default-template">
+		<span ng-show="title.length > 0">{{title}}</span><br/>
 		<img ng-src="{{imageUrl}}" ng-show="imageUrl" />
 
 		<div class="default-template-step-1">
@@ -18,5 +19,6 @@
 			<span class="step-title">Step 2.</span> Choose a title
 			<button class="btn step-btn" ng-click="chooseAlbumTitle()">GO!</button>
 		</div>
+		<button class="btn step-btn" ng-click="saveCustomization()">Save!</button>
 	</div>
 </div>
