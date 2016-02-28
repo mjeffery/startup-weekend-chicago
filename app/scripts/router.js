@@ -37,6 +37,15 @@ angular.module('gift-tapes')
                         }
                     }
                 })
+                .when('/playlists', {
+                    templateUrl: 'templates/playlist.html',
+                    controller: 'PlaylistsCtrl',
+                    resolve: {
+                        playlist: function(){
+                            return {songs: [1,2,3]};
+                        }
+                    }
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
