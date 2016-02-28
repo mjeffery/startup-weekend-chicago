@@ -76,6 +76,12 @@ var Playlists = function(){
         return runQuery('SELECT * FROM share WHERE id = $1', [id]);
     }
 
+	function setCustomization(playlistId, data) {
+		//TODO finish this query
+		return runQuery('INSERT INTO playlist (playlist_id, image_url, album_title) VALUES ($1, $2)', []);
+
+	}
+
     function runQuery(queryStr, params){
         return new Promise(function(resolve){
             pg.connect(connectionString, function(err, client, done) {
