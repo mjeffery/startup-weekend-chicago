@@ -106,6 +106,7 @@ body {
 }
 .navbar-nav>li {
     float: none;
+    background-color: white;
 }
 .navbar-nav>li>a {
     padding-top: 10px;
