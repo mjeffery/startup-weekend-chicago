@@ -16,21 +16,18 @@ angular.module('gift-tapes')
             }).then((resp) => {
                 console.log(resp);
                 var songs = [];
-                resp.data.tracks.items.forEach(function (track) {
-                    songs.push({
-                        title: track.name,
-                        artist: track.artists[0].name,
-                        id: track.uri,
-                        streamUrl: track.preview_url,
-                        trustedUrl: getTrustedUrl(track.uri)
-                    });
+                resp.data.tracks.items.forEach(function (track, i) {
+                    if (i <= 10) {
+                        songs.push({
+                            title: track.name,
+                            artist: track.artists[0].name,
+                            id: track.id,
+                            streamUrl: track.preview_url
+                        });
+                    }
                 });
                 return songs;
             });
-        }
-
-        function getTrustedUrl(uri) {
-            return $sce.trustAsUrl('https://embed.spotify.com/?uri=' + uri);
         }
 
         function player(songId) {
