@@ -28,10 +28,10 @@ var Playlists = function(){
         });
     }
 
-    function addSong(userId, playlistId, url){
+    function addSong(userId, playlistId, spotifyId){
         return Promise.all([
             doesPlayListExist(userId, playlistId),
-            runQuery('INSERT INTO song (playlist_id, url) VALUES ($1, $2) RETURNING id', [playlistId, url])
+            runQuery('INSERT INTO song (playlist_id, spotify_id) VALUES ($1, $2) RETURNING id', [playlistId, spotifyId])
             ]).then(function(result){
                 return result[1];
             }).catch(function(err){
