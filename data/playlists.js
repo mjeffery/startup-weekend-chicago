@@ -58,26 +58,22 @@ var Playlists = function(){
             });
     }
 
-    function createShare(userId, playlistId){
-        doesUserExist(userId);
-        doesPlayListExist(userId, playlistId);
-
-        var id = uuid();
-
-        data[userId][playlistId]['shareId'] = id;
-
-        shares[id] = {
-            userId,
-            playlistId
-        };
-
-        return id;
+    function createShare(userId, playlistId, email_address, physical_address){
+        console.log("userId: " + userId);
+        return Promise.all([
+                doesPlayListExist(userId, playlistId),
+                runQuery('INSERT INTO share (playlist_id, email_address, physical_address) VALUES ($1, $2, $3) RETURNING id', [playlistId, email_address, physical_address])
+            ]).then(function(result){
+                return result[1];
+            }).catch(function(err){
+                console.log (err);
+                throw(err);
+            });
     }
 
     function getShare(id){
-        var share = shares[id];
-
-        return getPlaylist(share.userId, share.playlistId);
+        console.log("ID2: " + id);
+        return runQuery('SELECT * FROM share WHERE id = $1', [id]);
     }
 
     function runQuery(queryStr, params){
@@ -104,8 +100,8 @@ var Playlists = function(){
         getPlaylists: getPlaylists,
         getPlaylist: getPlaylist,
         addSong: addSong,
-        createShare: Promise.promisify(createShare),
-        getShare: Promise.promisify(getShare)
+        createShare: createShare,
+        getShare: getShare
     };
 };
 
