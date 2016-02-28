@@ -1,4 +1,4 @@
-angular.module('gift-tapes', ['ngRoute'])
+angular.module('gift-tapes')
     .config(function ($locationProvider){
         $locationProvider.html5Mode(false).hashPrefix('!');
     })
@@ -16,6 +16,10 @@ angular.module('gift-tapes', ['ngRoute'])
                         }
                     }
                 })
+				.when('/upload', {
+					templateUrl: 'templates/upload-picture.html',
+					controller: 'UploadPhotoCtrl'
+				})
                 .otherwise({
                     redirectTo: '/'
                 });
