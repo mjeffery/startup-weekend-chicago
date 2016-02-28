@@ -1,6 +1,6 @@
 console.log('\'Allo \'Allo!');
 
-angular.module('gift-tapes', ['ngRoute', 'ngResource', 'ngSanitize'])
+angular.module('gift-tapes', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate'])
 	.factory('userId', function(){
 		var userId = 1;
 
@@ -26,9 +26,4 @@ angular.module('gift-tapes', ['ngRoute', 'ngResource', 'ngSanitize'])
 	})
 	.factory('Playlists', function($resource, userId, playlistId){
 		return $resource('/api/playlists/:id', {userId: userId(), id: playlistId(), 'spotifyId': '@spotifyId'});
-	})
-	.controller('DoesItWorkCtrl', function($scope) {
-		$scope.itWorks = true;
 	});
-
-
