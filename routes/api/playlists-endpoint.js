@@ -30,9 +30,6 @@ router.post('/playlists', function(req, res, next) {
         }, function(err){
             error(res, err);
         });
-    var obj = {playlistId: id};
-
-    res.json(obj);
 });
 
 router.get('/playlists/:playlistId', function(req, res, next){

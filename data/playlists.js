@@ -9,15 +9,21 @@ var Playlists = function(){
     var shares = {};
 
     function addPlaylist(userId){
-        var id = uuid();
+        return new Promise(function(resolve){
+            pg.connect(connectionString, function(err, client, done) {
+                if(err) {
+                    return console.error('error fetching client from pool', err);
+                }
+                client.query('INSERT INTO playlist (user_id) VALUES ($1) RETURNING id', [userId], function(err, result) {
+                    done();
 
-        if(!data.hasOwnProperty(userId)){
-            data[userId] = {};
-        }
-
-        data[userId][id] = {songs: []};
-
-        return id;
+                    if(err) {
+                        return console.error('error running query', err);
+                    }
+                    resolve(result.rows);
+                });
+            });
+        });
     }
 
     function getPlaylists(userId){
@@ -101,7 +107,7 @@ var Playlists = function(){
     }
 
     return {
-        addPlaylist: Promise.promisify(addPlaylist),
+        addPlaylist: addPlaylist,
         getPlaylists: getPlaylists,
         getPlaylist: getPlaylist,
         addSong: Promise.promisify(addSong),
