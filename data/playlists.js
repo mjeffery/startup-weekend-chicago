@@ -77,9 +77,7 @@ var Playlists = function(){
     }
 
 	function setCustomization(playlistId, data) {
-		//TODO finish this query
-		return runQuery('INSERT INTO playlist (playlist_id, image_url, album_title) VALUES ($1, $2)', []);
-
+		return runQuery('UPDATE playlist SET image_url = $2, album_title = $3 WHERE id = $1', [playlistId, data.image_url, data.album_title]);
 	}
 
     function runQuery(queryStr, params){
@@ -107,7 +105,8 @@ var Playlists = function(){
         getPlaylist: getPlaylist,
         addSong: addSong,
         createShare: createShare,
-        getShare: getShare
+        getShare: getShare,
+        setCustomization: setCustomization
     };
 };
 
