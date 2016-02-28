@@ -52,6 +52,6 @@
 				<button class="btn btn-lg btn-link remove-button" ng-click="remove(song)"><span class="glyphicon glyphicon-minus-sign"></span></button>
 			</div>
 		</li>
-		<a href="#!/customize" class="list-group-item customize-button">Customize</a>
+		<a href="#!/customize" ng-if="!loading && playlist.length > 0" class="list-group-item customize-button">Customize</a>
 	</ul>
 </div>
