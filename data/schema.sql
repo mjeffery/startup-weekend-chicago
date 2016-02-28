@@ -18,3 +18,5 @@ CREATE TABLE IF NOT EXISTS song (
 );
 
 ALTER TABLE user2 ADD name text;
+
+ALTER TABLE song ADD url text;

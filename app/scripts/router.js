@@ -16,6 +16,10 @@ angular.module('gift-tapes')
                         }
                     }
                 })
+				.when('/upload', {
+					templateUrl: 'templates/upload-picture.html',
+					controller: 'UploadPhotoCtrl'
+				})
                 .when('/playlists/:id', {
                     templateUrl: 'templates/playlist.html',
                     controller: 'PlaylistsCtrl',
