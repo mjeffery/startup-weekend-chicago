@@ -84,4 +84,22 @@ router.get('/shares/:id', function(req, res, next) {
         });
 });
 
+
+router.post('/playlists/:id/customization', function(req, res, next) {
+	var playlistId = req.params.id;
+	var data = {
+		image_url: req.body.image_url,
+		album_title: req.body.album_title
+	};
+
+	playlists.setCustomization(playlistId, data)
+		.then(function() {
+			res.status(200);
+			res.end();
+		})
+		.catch(function(err) {
+			error(res, err);
+		});
+});
+
 module.exports = router;
