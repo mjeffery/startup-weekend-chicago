@@ -1,30 +1,51 @@
-<h1>Customize it, Baby!</h1>
-<div>
-	<div class="templates-list">
-		<ul>
-			<li>Default</li>
-			<li>Another</li>
-			<li>Another...</li>
-		</ul>
-	</div>
-	<div class="default-template">
-		<div class="default-template-step-1">
-			<span class="step-title">Step 1.</span> Choose a background image 
-			<button class="btn step-btn" ng-click="choosePhoto()">GO!</button>
-		</div>
-		<div class="default-template-step-2">
-			<span class="step-title">Step 2.</span> Choose a title
-			<button class="btn step-btn" ng-click="chooseAlbumTitle()">GO!</button>
-		</div>
-		<div style="position:relative;">
+<div class="jumbotron">
+	<h1>Customize it, Baby!</h1>
+	<hr>
+	<div class="row">
+		<div class="col-md-9">
+			<div class="image-container" style="position:relative;">
 			<div width="400" height="400" class="custom-album-title">{{title|spaceToBreaks}}</div>
-			<img width="754" height="754"
-				src="images/album_borders.svg" 
-				style="position:absolute; top:23px; left:23px; z-index:1;" 
-			/>
-			<img width="800" height="800" 
-				ng-src="{{imageUrl}}" ng-show="imageUrl" style="position:absolute; top:0; left:0;" />
+				<img width="754" height="754"
+					 src="images/album_borders.svg"
+					 style="position:absolute; top:23px; left:23px; z-index:1;"
+				/>
+				<img width="800" height="800" class="img-thumbnail" alt="..."
+					 ng-src="{{imageUrl}}" ng-show="imageUrl" style="position:absolute; top:0; left:0;" />
+			</div>
 		</div>
-		<button class="btn step-btn" ng-click="saveCustomization()">Save!</button>
+		<div class="col-md-3 customize-menu">
+			<h3 class="menu-title">Template</h3>
+			<div class="templates-list">
+				<div class="btn-group">
+					<button type="button" class="btn btn-danger btn-lg">Default</button>
+					<button type="button" class="btn btn-danger btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Mix Tape</a></li>
+						<li><a href="#">Old School</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<h3 class="menu-title">Personalize</h3>
+
+			<div class="default-template">
+				<p class="default-template-step-1">
+					<button class="btn step-btn btn-lg" ng-click="choosePhoto()"> <span class="glyphicon glyphicon-picture"></span> Background</button>
+				</p>
+				<p class="default-template-step-2">
+					<button class="btn step-btn btn-lg" ng-click="chooseAlbumTitle()"><span class="glyphicon glyphicon-text-background"></span>Title</button>
+				</p>
+			</div>
+			<div class="send-container">
+				<h3 class="menu-title">Ship it</h3>
+				<p>
+					<button class="btn btn-lg btn-success send-button" ng-click="chooseAlbumTitle()"><span class="glyphicon glyphicon-send"></span>Send</button>
+				</p>
+			</div>
+
 	</div>
 </div>
+<button ng-show="imageUrl" class="btn step-btn" ng-click="saveCustomization()">Save!</button>
