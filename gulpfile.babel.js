@@ -165,9 +165,3 @@ gulp.task('build', ['html', 'images', 'fonts', 'extras'], () => {
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
 });
-
-gulp.on('stop', function () {
-  process.nextTick(function () {
-    process.exit(0);
-  });
-});
