@@ -60,8 +60,6 @@ angular.module('gift-tapes')
 
 	}
 
-	function 
-
 	function sendToS3(data) {
 		var canvas = document.getElementById('preview-canvas');	
 		var dataURI = canvas.toDataURL('image/png');

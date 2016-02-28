@@ -113,3 +113,52 @@ body {
     padding-bottom: 10px;
 }
 .navbar-collapse.collapse.in {display: block !important; }
+
+.song-title {
+    display:inline-block;
+    font-size: 15pt;
+    font-weight:bold;
+}
+
+.song-title small {
+    font-size: .8em;
+    font-weight:normal;
+}
+
+.cover-art {
+    width: 55px;
+    height: 55px;
+    margin-right:20px;
+}
+
+.cover-art play-button {
+    position: absolute;
+}
+
+.cover-art play-button button {
+    z-index: 10;
+    position:relative;
+    height: 55px;
+    width: 55px;
+    color: white;
+
+}
+
+.cover-art play-button button:hover {
+    color: #bdbdbd;
+}
+
+.cover-art img {
+    height: 55px;
+    width: 55px;
+    position: absolute;
+}
+
+.right-button {
+    height:55px;
+    line-height: 55px;
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: white;
+}
