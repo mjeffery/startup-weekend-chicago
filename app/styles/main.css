@@ -210,6 +210,19 @@ body {
     color: #3e9ad9
 }
 
+.customize-button {
+    font-style: oblique !important;
+    font-size: medium !important;
+    color: white !important;
+    background-color: #0b97c4 !important;
+}
+
+.customize-button:hover {
+    font-style: oblique !important;
+    font-size: medium !important;
+    color: white !important;
+    background-color: #0d3349 !important;
+}
 
 ul.list-group.search-results li {
     background-color: #FAFAFA;
