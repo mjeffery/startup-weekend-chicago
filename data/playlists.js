@@ -9,79 +9,53 @@ var Playlists = function(){
     var shares = {};
 
     function addPlaylist(userId){
-        return new Promise(function(resolve){
-            pg.connect(connectionString, function(err, client, done) {
-                if(err) {
-                    return console.error('error fetching client from pool', err);
-                }
-                client.query('INSERT INTO playlist (user_id) VALUES ($1) RETURNING id', [userId], function(err, result) {
-                    done();
-
-                    if(err) {
-                        return console.error('error running query', err);
-                    }
-                    resolve(result.rows);
-                });
-            });
-        });
+        return runQuery('INSERT INTO playlist (user_id) VALUES ($1) RETURNING id', [userId]);
     }
 
     function getPlaylists(userId){
-        return new Promise(function(resolve){
-            pg.connect(connectionString, function(err, client, done) {
-                if(err) {
-                    return console.error('error fetching client from pool', err);
-                }
-                client.query('SELECT * FROM playlist WHERE user_id = $1', [userId], function(err, result) {
-                    done();
-
-                    if(err) {
-                        return console.error('error running query', err);
-                    }
-                    resolve(result.rows);
-                });
-            });
-        });
+        return runQuery('SELECT * FROM playlist WHERE user_id = $1', [userId]);
     }
 
     function getPlaylist(userId, playlistId){
-
-        return new Promise(function(resolve){
-            pg.connect(connectionString, function(err, client, done) {
-                if(err) {
-                    return console.error('error fetching client from pool', err);
-                }
-                client.query('SELECT * FROM playlist WHERE user_id = $1 and id = $2', [userId, playlistId], function(err, result) {
-                    done();
-
-                    if(err) {
-                        return console.error('error running query', err);
-                    }
-                    resolve(result.rows);
-                });
-            });
+        return Promise.all([
+            doesPlayListExist(userId, playlistId),
+            runQuery('SELECT * FROM song WHERE playlist_id = $1', [playlistId])
+        ]).then(function(result){
+            return result[1];
+        }).catch(function(err){
+            console.log (err);
+            throw(err);
         });
     }
 
     function addSong(userId, playlistId, url){
-        doesUserExist(userId);
-        doesPlayListExist(userId, playlistId);
-
-        data[userId][playlistId]['songs'].push(url);
-
-        return data[userId][playlistId];
+        return Promise.all([
+            doesPlayListExist(userId, playlistId),
+            runQuery('INSERT INTO song (playlist_id, url) VALUES ($1, $2) RETURNING id', [playlistId, url])
+            ]).then(function(result){
+                return result[1];
+            }).catch(function(err){
+                console.log (err);
+                throw(err);
+        });
     }
 
     function doesUserExist(userId) {
-        if(!data.hasOwnProperty(userId)) {
-            throw Errors.UserNotFound
-        }
+        return runQuery('SELECT * FROM user2 WHERE user_id = $1', [userId, playlistId]).
+            then(function(result){
+                if(result.length != 1){
+                    throw("Playlist does not exist for user");
+                }
+            });
     }
 
     function doesPlayListExist(userId, playlistId){
-        if(!data[userId].hasOwnProperty(playlistId)) {
-            throw Errors.PlaylistNotFound;
-        }
+        return runQuery('SELECT * FROM playlist WHERE user_id = $1 AND id = $2', [userId, playlistId]).
+            then(function(result){
+                if(result.length != 1){
+                    throw("Playlist does not exist for user");
+                }
+            });
     }
 
     function createShare(userId, playlistId){
@@ -106,11 +80,30 @@ var Playlists = function(){
         return getPlaylist(share.userId, share.playlistId);
     }
 
+    function runQuery(queryStr, params){
+        return new Promise(function(resolve){
+            pg.connect(connectionString, function(err, client, done) {
+                if(err) {
+                    return console.error('error fetching client from pool', err);
+                }
+                client.query(queryStr, params, function(err, result) {
+                    done();
+
+                    if(err) {
+                        return console.error('error running query', err);
+                    }
+                    resolve(result.rows);
+                });
+            });
+        })
+
+    }
+
     return {
         addPlaylist: addPlaylist,
         getPlaylists: getPlaylists,
         getPlaylist: getPlaylist,
-        addSong: Promise.promisify(addSong),
+        addSong: addSong,
         createShare: Promise.promisify(createShare),
         getShare: Promise.promisify(getShare)
     };

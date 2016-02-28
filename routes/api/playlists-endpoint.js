@@ -45,7 +45,7 @@ router.get('/playlists/:playlistId', function(req, res, next){
 
 router.post('/playlists/:id', function(req, res, next){
     var playlistId = req.params.id;
-    var url = req.params.url;
+    var url = req.query.url;
     playlists.addSong(req.userId, playlistId, url)
         .then(function(list){
             res.json({id: playlistId, playlist: list});
