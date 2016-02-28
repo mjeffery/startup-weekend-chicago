@@ -11,7 +11,7 @@ angular.module('gift-tapes')
 	}
 })
 
-.controller('MusicSearchCtrl', function($scope, spotifyService, notInListFilter) {
+.controller('MusicSearchCtrl', function($scope, $sce, spotifyService, notInListFilter) {
 	$scope.playlist = [];
 	$scope.songs = [];
 

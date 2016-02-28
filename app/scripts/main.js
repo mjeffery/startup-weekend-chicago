@@ -1,6 +1,6 @@
 console.log('\'Allo \'Allo!');
 
-angular.module('gift-tapes', ['ngRoute'])
+angular.module('gift-tapes', ['ngRoute', 'ngSanitize'])
 	.factory('userId', function(){
 		var userId = 1;
 
@@ -9,6 +9,8 @@ angular.module('gift-tapes', ['ngRoute'])
 				userId = id;
 			} else return userId;
 		};
+	}).config(function ($sceProvider) {
+		$sceProvider.enabled(false);
 	})
 	.factory('Shares', function($resource){
 		return $resource('/api/shares/:id', {userId: '@userId'});
