@@ -40,6 +40,12 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 760px; /* or 950px */
+}
+
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -183,4 +189,53 @@ body {
 ul.list-group.search-results li {
     background-color: #FAFAFA;
     color: #686868;
+}
+
+/**
+ * iPhone 6 landscape
+ */
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (width : 667px)
+and (height : 375px)
+and (orientation : landscape)
+and (color : 8)
+and (device-aspect-ratio : 375/667)
+and (aspect-ratio : 667/375)
+and (device-pixel-ratio : 2)
+and (-webkit-min-device-pixel-ratio : 2) {
+
+    .panel-heading .input-group {
+        width: 90%
+    }
+
+}
+
+/**
+ * iPhone 6 portrait
+ */
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (width : 375px)
+and (height : 559px)
+and (orientation : portrait)
+and (color : 8)
+and (device-aspect-ratio : 375/667)
+and (aspect-ratio : 375/559)
+and (device-pixel-ratio : 2)
+and (-webkit-min-device-pixel-ratio : 2) {
+    .panel-heading .input-group {
+        width: 90%
+    }
+
+    .song-title {
+        font-size: 5pt;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .modal-xs { width: 300px; }
 }
