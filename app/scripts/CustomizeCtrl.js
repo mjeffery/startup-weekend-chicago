@@ -1,5 +1,11 @@
 angular.module('gift-tapes')
 
+.filter('spaceToBreaks', function() {
+	return function(value) {
+		return angular.isString(value) ? value.replace(/\s+/gi, '\n') : value;
+	}
+})
+
 .controller('CustomizeCtrl', function($scope, $uibModal, $http, playlistId, userId) {
 
 	$scope.choosePhoto = function() {

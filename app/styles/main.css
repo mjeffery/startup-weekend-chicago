@@ -229,6 +229,19 @@ ul.list-group.search-results li {
     color: #686868;
 }
 
+.custom-album-title {
+	z-index: 1000;
+	top: 200px;
+	left: 200px;
+	text-align: center;
+	vertical-align: middle;
+	font-family:Verdana;
+	font-size:54px;
+	color:white;
+	white-space:pre-wrap;
+	position:absolute;
+}
+
 /**
  * iPhone 6 landscape
  */
