@@ -1,6 +1,6 @@
 angular.module('gift-tapes')
 
-.controller('CustomizeCtrl', function($scope, $uibModal) {
+.controller('CustomizeCtrl', function($scope, $uibModal, $http, playlistId, userId) {
 
 	$scope.choosePhoto = function() {
 		var modal = $uibModal.open({
@@ -10,12 +10,28 @@ angular.module('gift-tapes')
 		});
 
 		modal.result.then(function(imageUrl) {
-			
+			$scope.imageUrl = imageUrl;
 		});
-	}
+	};
 
-	$scope.doStep2 = function() {
+	$scope.chooseAlbumTitle = function () {
+		var modal = $uibModal.open({
+			templateUrl: 'templates/modals/chooseTitle.html',
+			controller: 'ChooseTitleCtrl',
+			size: 'lg'
+		});
 
-	}
+		modal.result.then(function (title) {
+			$scope.title = title;
+		});
+	};
 
+	$scope.saveCustomization = function () {
+		$http.post('/api/playlists/' + playlistId() + '/customization?userId=' + userId(), {
+			image_url: $scope.imageUrl,
+			album_title: $scope.title
+		}).then(function (data) {
+			alert('Saved!');
+		});
+	};
 });

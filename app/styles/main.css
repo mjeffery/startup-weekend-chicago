@@ -7,6 +7,7 @@
 
 /* Space out content a bit */
 body {
+  font-family: 'Raleway', sans-serif;
   padding-top: 20px;
   padding-bottom: 20px;
     color: #535353;
@@ -47,7 +48,8 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  background-color: rgba(255,255,255, .2);
+  border-width: 0;
 }
 
 .jumbotron .btn {
@@ -64,30 +66,6 @@ body {
   margin-top: 28px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
 .navbar-header {
     float: none;
 }
@@ -114,6 +92,59 @@ body {
     padding-bottom: 10px;
 }
 .navbar-collapse.collapse.in {display: block !important; }
+
+.spinner {
+    margin: 100px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.spinner > div {
+    background-color: white;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
 
 .song-title {
     display:inline-block;
@@ -183,4 +214,55 @@ body {
 ul.list-group.search-results li {
     background-color: #FAFAFA;
     color: #686868;
+}
+
+/**
+ * iPhone 6 landscape
+ */
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (width : 667px)
+and (height : 375px)
+and (orientation : landscape)
+and (color : 8)
+and (device-aspect-ratio : 375/667)
+and (aspect-ratio : 667/375)
+and (device-pixel-ratio : 2)
+and (-webkit-min-device-pixel-ratio : 2) {
+
+    .panel-heading .input-group {
+        width: 90%
+    }
+
+    .song-title {
+        width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+/**
+ * iPhone 6 portrait
+ */
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : portrait) {
+    .container {
+        width: 667px;
+    }
+
+    .song-title {
+        width: 310px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-xs { width: 300px; }
 }

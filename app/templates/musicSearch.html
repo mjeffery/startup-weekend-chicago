@@ -2,15 +2,16 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<form ng-submit="search(query)" class="form-inline">
+			<form ng-submit="search(query)">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 					<input class="form-control input-sm" ng-model="query" ng-model-options="{ debounce: 250 }">
+					<span class="input-group-btn">
+						<button class="send-button btn btn-primary btn-sm pull-right" ng-disabled="playlist.length==0" ng-click="savePlaylist(playlist)"><span class="glyphicon glyphicon-envelope"></span></button>
+					</span>
 				</div>
-				<button class="send-button btn btn-primary btn-sm pull-right" ng-if="playlist.length > 0" ng-click="savePlaylist(playlist)"><span class="glyphicon glyphicon-envelope"></span></button>
 			</form>
 		</div>
-		<div class="empty-playlist" ng-if="playlist.length < 1">Start adding songs now!</div>
 		<ul class="list-group search-results">
 			<li class="list-group-item" ng-repeat="song in songs|notInList:playlist track by song.id">
 				<div class="cover-art pull-left">
@@ -23,6 +24,21 @@
 				</div>
 			</li>
 		</ul>
+	</div>
+
+	<div class="empty-playlist jumbotron" ng-if="!loading && playlist.length < 1">
+		<h1>Mix it up</h1>
+		<p>Start adding songs now!</p>
+	</div>
+
+	<div class="loading-playlist jumbotron" ng-if="loading">
+		<div class="spinner">
+			<div class="rect1"></div>
+			<div class="rect2"></div>
+			<div class="rect3"></div>
+			<div class="rect4"></div>
+			<div class="rect5"></div>
+		</div>
 	</div>
 
 	<ul class="list-group">

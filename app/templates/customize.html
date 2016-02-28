@@ -8,14 +8,26 @@
 		</ul>
 	</div>
 	<div class="default-template">
-
 		<div class="default-template-step-1">
 			<span class="step-title">Step 1.</span> Choose a background image 
 			<button class="btn step-btn" ng-click="choosePhoto()">GO!</button>
 		</div>
 		<div class="default-template-step-2">
-			<span class="step-title" ng-click="chooseAlbumTitle()">Step 2.</span> Choose a title 
-			<button class="btn step-btn">GO!</button>
+			<span class="step-title">Step 2.</span> Choose a title
+			<button class="btn step-btn" ng-click="chooseAlbumTitle()">GO!</button>
 		</div>
+		<div style="position:relative;">
+			<div width="400" height="400" 
+				 style="position:absolute; top:200px; left:200px; color:white; font-family:Verdana; text-align:center; vertical-align:middle;">
+				{{title}}
+			</div>
+			<img width="754" height="754"
+				src="images/album_borders.svg" 
+				style="position:absolute; top:23px; left:23px; z-index:1;" 
+			/>
+			<img width="800" height="800" 
+				ng-src="{{imageUrl}}" ng-show="imageUrl" style="position:absolute; top:0; left:0;" />
+		</div>
+		<button class="btn step-btn" ng-click="saveCustomization()">Save!</button>
 	</div>
 </div>
