@@ -2,9 +2,10 @@
 	<div class="playlist">
 		<h3>Playlist:</h3>
 		<div class="empty-playlist" ng-if="playlist.length < 1">Start adding songs now!</div>
-		<div ng-repeat="song in playlist track by song.id">
-			<span class="song-title">{{song.title}}</span>- {{song.artist}}
+		<div ng-repeat="song in playlist track by song.id"
 			<button class="remove-button" ng-click="remove(song)">-</button>
+			<play-button id="{{song.id}}"></play-button>
+			<span class="song-title">{{song.title}}</span>- {{song.artist}}
 		</div>
 		<button class="send-button" ng-if="playlist.length > 0" ng-click="savePlaylist(playlist)">Send it!</button>
 	</div>
@@ -16,9 +17,9 @@
 	</div>
 	<div class="search-results">
 		<div class="search-result" ng-repeat="song in songs|notInList:playlist track by song.id">
-			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
 			<button ng-click="add(song)" class="add-button">+</button>
 			<play-button id="{{song.id}}"></play-button>
+			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
 		</div>
 	</div>
 </div>

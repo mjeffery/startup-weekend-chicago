@@ -38,6 +38,10 @@ angular.module('gift-tapes')
             return $http.get('https://api.spotify.com/v1/tracks/' + songId).then((resp) => mapToSong(resp.data))
         }
 
+        function getSongs(ids) {
+            return $http.get('https://api.spotify.com/v1/tracks?ids=' + ids.join(','), {cache: true}).then((resp) => resp.data.tracks.map(mapToSong))
+        }
+
         function player(songId) {
             return $http.get('https://api.spotify.com/v1/tracks/' + songId)
                 .then((resp) => {
@@ -48,6 +52,7 @@ angular.module('gift-tapes')
         return {
             find: find,
             getSong: getSong,
+            getSongs: getSongs,
             player: player
         };
     });
