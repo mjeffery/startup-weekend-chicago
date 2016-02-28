@@ -20,6 +20,10 @@ angular.module('gift-tapes')
 					templateUrl: 'templates/upload-picture.html',
 					controller: 'UploadPhotoCtrl'
 				})
+				.when('/customize', {
+					templateUrl: 'templates/customize.html',
+					controller: 'CustomizeCtrl'
+				})
                 .when('/playlists/:id', {
                     templateUrl: 'templates/playlist.html',
                     controller: 'PlaylistsCtrl',

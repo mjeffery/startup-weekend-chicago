@@ -5,6 +5,7 @@ import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
 var ngAnnotate = require('gulp-ng-annotate');
+var proxyMiddleware = require('http-proxy-middleware');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -92,6 +93,8 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
+var proxy = proxyMiddleware('/api', { target: 'http://localhost:5000' });
+
 gulp.task('serve', ['html', 'styles', 'scripts', 'fonts'], () => {
   browserSync({
     notify: false,
@@ -100,7 +103,8 @@ gulp.task('serve', ['html', 'styles', 'scripts', 'fonts'], () => {
       baseDir: ['.tmp', 'app'],
       routes: {
         '/bower_components': 'bower_components'
-      }
+      },
+	  middleware: [proxy]
     }
   });
 
