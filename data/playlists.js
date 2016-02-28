@@ -1,6 +1,8 @@
 var uuid = require('tiny-uuid4');
 var Errors = require('./errors');
 var Promise = require("bluebird");
+var pg = require('pg');
+var connectionString = process.env.DATABASE_URL + "?ssl=true";
 
 var Playlists = function(){
     var data = {};
@@ -19,11 +21,21 @@ var Playlists = function(){
     }
 
     function getPlaylists(userId){
-        if(!data.hasOwnProperty(userId)) {
-            throw Errors.UserNotFound
-        }
+        return new Promise(function(resolve){
+            pg.connect(connectionString, function(err, client, done) {
+                if(err) {
+                    return console.error('error fetching client from pool', err);
+                }
+                client.query('SELECT * FROM playlist WHERE user_id = 1', function(err, result) {
+                    done();
 
-        return data[userId]
+                    if(err) {
+                        return console.error('error running query', err);
+                    }
+                    resolve(result.rows);
+                });
+            });
+        });
     }
 
     function getPlaylist(userId, playlistId){
@@ -78,7 +90,7 @@ var Playlists = function(){
 
     return {
         addPlaylist: Promise.promisify(addPlaylist),
-        getPlaylists: Promise.promisify(getPlaylists),
+        getPlaylists: getPlaylists,
         getPlaylist: Promise.promisify(getPlaylist),
         addSong: Promise.promisify(addSong),
         createShare: Promise.promisify(createShare),
