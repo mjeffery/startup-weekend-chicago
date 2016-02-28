@@ -16,13 +16,11 @@ ALTER TABLE user2 ADD name text;
 
 ALTER TABLE song ADD url text;
 
-<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS share (
     id SERIAL PRIMARY KEY,
     playlist_id int REFERENCES playlist(id),
     email_address TEXT,
     physical_address TEXT
 );
-=======
+
 ALTER TABLE song ADD spotify_id text;
->>>>>>> e9b06db9cc115200c5e6a2b96fa63d7ea97bb451
