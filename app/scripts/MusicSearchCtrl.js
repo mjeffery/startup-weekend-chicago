@@ -10,9 +10,15 @@ angular.module('gift-tapes')
 		});
 	}
 })
-
-.controller('MusicSearchCtrl', function($scope, spotifyService, notInListFilter) {
+.controller('MusicSearchCtrl', function($scope, Playlists, spotifyService, notInListFilter) {
 	$scope.playlist = [];
+	Playlists
+		.get({})
+		.$promise
+		.then(function(playlist){
+			$scope.playlist = playlist;
+		});
+
 	$scope.songs = [];
 
 	$scope.search = function(query) {
@@ -31,8 +37,12 @@ angular.module('gift-tapes')
 	});
 
 	$scope.add = function(song) {
-		if(!_.some($scope.playlist, { id: song.id }))
-			$scope.playlist.push(song);
+		Playlists.save({id: song})
+			.$promise
+			.then(function(id){
+				if(!_.some($scope.playlist, { id: song.id }))
+					$scope.playlist.push(song);
+			});
 	};
 
 	$scope.remove = function(song) {

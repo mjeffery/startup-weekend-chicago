@@ -1,4 +1,4 @@
-angular.module('gift-tapes', ['ngRoute'])
+angular.module('gift-tapes')
     .config(function ($locationProvider){
         $locationProvider.html5Mode(false).hashPrefix('!');
     })
@@ -13,6 +13,15 @@ angular.module('gift-tapes', ['ngRoute'])
                             return $q(function(resolve, reject) {
                                 Shares.get($routeParams.id, resolve, reject)
                             })
+                        }
+                    }
+                })
+                .when('/playlists/:id', {
+                    templateUrl: 'templates/playlist.html',
+                    controller: 'PlaylistsCtrl',
+                    resolve: {
+                        playlist: function(){
+                            return {songs: [1,2,3]};
                         }
                     }
                 })
