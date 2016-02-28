@@ -112,3 +112,14 @@ body {
     padding-bottom: 10px;
 }
 .navbar-collapse.collapse.in {display: block !important; }
+
+.song-title {
+    display:inline-block;
+    font-size: 15pt;
+    font-weight:bold;
+}
+
+.song-title small {
+    font-size: .8em;
+    font-weight:normal;
+}

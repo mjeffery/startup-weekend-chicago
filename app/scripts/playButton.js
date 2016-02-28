@@ -8,16 +8,16 @@ angular.module('gift-tapes')
 		},
 		templateUrl: 'templates/playButton.html',
 		link: function(scope, elem, attrs) {
-			scope.actionText = 'Play';
+			scope.actionText = 'play';
 			scope.playAudio = function () {
-				if (scope.actionText === 'Play') {
-					scope.actionText = 'Pause';
+				if (scope.actionText === 'play') {
+					scope.actionText = 'pause';
 					spotifyService.player(scope.id).then(function (ret) {
 						player = ret;
 						player.play();
 					});
 				} else {
-					scope.actionText = 'Play';
+					scope.actionText = 'play';
 					if (player) {
 						player.pause();
 					}
