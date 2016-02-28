@@ -8,7 +8,7 @@ angular.module('gift-tapes')
 			var input = document.getElementById('file_input');
 			if(input.files && input.files[0]) {
 				var canvas = document.getElementById('preview-canvas');
-				downscale(input, canvas, 500, 1000)
+				downscale(input, canvas, 800, 800)
 					.then(function() { 
 						grayscale(canvas);
 						$scope.selected = true;

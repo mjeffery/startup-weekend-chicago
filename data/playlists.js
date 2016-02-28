@@ -19,7 +19,7 @@ var Playlists = function(){
     function getPlaylist(userId, playlistId){
         return Promise.all([
             doesPlayListExist(userId, playlistId),
-            runQuery('SELECT * FROM song WHERE playlist_id = $1', [playlistId])
+            runQuery('SELECT p.album_title, p.image_url album_image_url, s.* FROM playlist p JOIN song s ON p.id = s.playlist_id WHERE p.id = $1', [playlistId])
         ]).then(function(result){
             return result[1];
         }).catch(function(err){
@@ -59,7 +59,6 @@ var Playlists = function(){
     }
 
     function createShare(userId, playlistId, email_address, physical_address){
-        console.log("userId: " + userId);
         return Promise.all([
                 doesPlayListExist(userId, playlistId),
                 runQuery('INSERT INTO share (playlist_id, email_address, physical_address) VALUES ($1, $2, $3) RETURNING id', [playlistId, email_address, physical_address])
@@ -72,7 +71,6 @@ var Playlists = function(){
     }
 
     function getShare(id){
-        console.log("ID2: " + id);
         return runQuery('SELECT * FROM share WHERE id = $1', [id]);
     }
 

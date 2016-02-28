@@ -19,6 +19,7 @@ router.use('/shares', function(req, res, next){
 });
 
 router.get('/playlists', function(req, res, next) {
+    console.log("here");
     playlists.getPlaylists(req.userId)
         .then(function(list){
             res.json({playlists: list});
@@ -42,6 +43,7 @@ router.get('/playlists/:playlistId', function(req, res, next){
 
     playlists.getPlaylist(req.userId, playlistId)
         .then(function(list){
+            console.log(list);
             res.json({playlist: list});
         }, function(err){
             error(res, err);

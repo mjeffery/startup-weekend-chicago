@@ -34,9 +34,4 @@ angular.module('gift-tapes')
 			alert('Saved!');
 		});
 	};
-
-	$scope.doStep2 = function() {
-
-	}
-
 });
