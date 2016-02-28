@@ -1,4 +1,4 @@
-angular.module('gift-tapes', ['ngRoute'])
+angular.module('gift-tapes')
     .config(function ($locationProvider){
         $locationProvider.html5Mode(false).hashPrefix('!');
     })
