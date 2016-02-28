@@ -5,6 +5,10 @@ angular.module('gift-tapes')
     .config(['$routeProvider',
         function($routeProvider) {
             $routeProvider
+				.when('/', {
+					templateUrl: 'templates/musicSearch.html',
+					controller: 'MusicSearchCtrl'
+				})
                 .when('/shares/:id', {
                     templateUrl: 'templates/playlist.html',
                     controller: 'PlaylistsCtrl',
