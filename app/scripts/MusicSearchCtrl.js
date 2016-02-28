@@ -12,12 +12,6 @@ angular.module('gift-tapes')
 })
 .controller('MusicSearchCtrl', function($scope, $sce, Playlists, spotifyService, notInListFilter) {
 	$scope.playlist = [];
-	Playlists
-		.get({})
-		.$promise
-		.then(function(playlist){
-			$scope.playlist = playlist;
-		});
 
 	$scope.songs = [];
 
@@ -37,11 +31,11 @@ angular.module('gift-tapes')
 	});
 
 	$scope.add = function(song) {
-		Playlists.save({id: song})
+		return Playlists.save({spotifyId:song.id})
 			.$promise
 			.then(function(id){
-				if(!_.some($scope.playlist, { id: song.id }))
-					$scope.playlist.push(song);
+				if(!_.some($scope.playlist, {id: song.id }))
+					$scope.playlist.push(song.id);
 			});
 	};
 
