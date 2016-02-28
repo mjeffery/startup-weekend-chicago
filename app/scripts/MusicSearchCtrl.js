@@ -11,8 +11,8 @@ angular.module('gift-tapes')
 	}
 })
 .controller('MusicSearchCtrl', function($scope, $q, $sce, Playlists, spotifyService, notInListFilter) {
+	$scope.loading = true;
 	$scope.playlist = [];
-
 	$scope.songs = [];
 
 	$scope.search = function(query) {
@@ -58,5 +58,6 @@ angular.module('gift-tapes')
 		.then(function (songs) {
 			console.log(songs);
 			$scope.playlist = songs;
+			$scope.loading = false;
 		});
 });
