@@ -2,12 +2,14 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<form ng-submit="search(query)" class="form-inline">
+			<form ng-submit="search(query)">
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 					<input class="form-control input-sm" ng-model="query" ng-model-options="{ debounce: 250 }">
+					<span class="input-group-btn">
+						<button class="send-button btn btn-primary btn-sm pull-right" ng-if="playlist.length > 0" ng-click="savePlaylist(playlist)"><span class="glyphicon glyphicon-envelope"></span></button>
+					</span>
 				</div>
-				<button class="send-button btn btn-primary btn-sm pull-right" ng-if="playlist.length > 0" ng-click="savePlaylist(playlist)"><span class="glyphicon glyphicon-envelope"></span></button>
 			</form>
 		</div>
 		<div class="empty-playlist" ng-if="playlist.length < 1">Start adding songs now!</div>
