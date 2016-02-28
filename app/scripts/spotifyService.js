@@ -18,16 +18,24 @@ angular.module('gift-tapes')
                 var songs = [];
                 resp.data.tracks.items.forEach(function (track, i) {
                     if (i <= 10) {
-                        songs.push({
-                            title: track.name,
-                            artist: track.artists[0].name,
-                            id: track.id,
-                            streamUrl: track.preview_url
-                        });
+                        songs.push(mapToSong(track));
                     }
                 });
                 return songs;
             });
+        }
+
+        function mapToSong(track) {
+            return {
+                title: track.name,
+                artist: track.artists[0].name,
+                id: track.id,
+                streamUrl: track.preview_url
+            }
+        }
+
+        function getSong(songId) {
+            return $http.get('https://api.spotify.com/v1/tracks/' + songId).then((resp) => mapToSong(resp.data))
         }
 
         function player(songId) {
@@ -39,6 +47,7 @@ angular.module('gift-tapes')
 
         return {
             find: find,
+            getSong: getSong,
             player: player
         };
     });
