@@ -24,3 +24,6 @@ CREATE TABLE IF NOT EXISTS share (
 );
 
 ALTER TABLE song ADD spotify_id text;
+
+ALTER TABLE playlist ADD image_url text;
+ALTER TABLE playlist ADD album_title text;
