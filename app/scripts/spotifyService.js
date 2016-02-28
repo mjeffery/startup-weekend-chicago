@@ -38,7 +38,7 @@ angular.module('gift-tapes')
         function getSmallestImageUrl(track) {
             var smallestSize = 9001;
             var smallest = null;
-            track.images.forEach(function (image) {
+            track.album.images.forEach(function (image) {
                 var size = image.height * image.width;
                 if ( size < smallestSize) {
                     smallestSize = size;

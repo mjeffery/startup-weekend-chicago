@@ -13,7 +13,10 @@
 		<div class="empty-playlist" ng-if="playlist.length < 1">Start adding songs now!</div>
 		<ul class="list-group">
 			<li class="list-group-item" ng-repeat="song in playlist track by song.id">
-				<play-button id="{{song.id}}"></play-button>
+				<div class="cover-art pull-left">
+					<play-button id="{{song.id}}"></play-button>
+					<img src="{{song.imageUrl}}" alt="..." class="img-rounded">
+				</div>
 				<span class="song-title">{{song.title}} <br> <small>{{song.artist}}</small></span>
 				<button class="btn btn-xs btn-link remove-button pull-right" ng-click="remove(song)"><span class="glyphicon glyphicon-minus-sign"></span></button>
 			</li>
