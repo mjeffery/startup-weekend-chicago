@@ -6,7 +6,7 @@ angular.module('gift-tapes')
 	}
 })
 
-.controller('CustomizeCtrl', function($scope, $uibModal, $http, playlistId, userId) {
+.controller('CustomizeCtrl', function($scope, $uibModal, $http, $location, playlistId, userId) {
 
 	$scope.choosePhoto = function() {
 		var modal = $uibModal.open({
@@ -37,7 +37,7 @@ angular.module('gift-tapes')
 			image_url: $scope.imageUrl,
 			album_title: $scope.title
 		}).then(function (data) {
-			alert('Saved!');
+			$location.url('http://tiny.cc/511m9x/')
 		});
 	};
 });

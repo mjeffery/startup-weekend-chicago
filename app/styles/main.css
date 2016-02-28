@@ -206,17 +206,7 @@ body {
 }
 
 .customize-button {
-    font-style: oblique !important;
-    font-size: medium !important;
-    color: white !important;
-    background-color: #0b97c4 !important;
-}
-
-.customize-button:hover {
-    font-style: oblique !important;
-    font-size: medium !important;
-    color: white !important;
-    background-color: #0d3349 !important;
+    width: 100%;
 }
 
 ul.list-group.search-results li {
@@ -226,8 +216,7 @@ ul.list-group.search-results li {
 
 .custom-album-title {
 	z-index: 1000;
-	top: 200px;
-	left: 200px;
+	top: 280px;
 	text-align: center;
 	vertical-align: middle;
 	font-family:Verdana;
@@ -235,6 +224,8 @@ ul.list-group.search-results li {
 	color:white;
 	white-space:pre-wrap;
 	position:absolute;
+    width: 800px;
+    color: white;
 }
 
 /**

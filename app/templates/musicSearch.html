@@ -6,9 +6,6 @@
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 					<input class="form-control input-sm" ng-model="query" ng-model-options="{ debounce: 250 }">
-					<span class="input-group-btn">
-						<button class="send-button btn btn-primary btn-sm pull-right" ng-disabled="playlist.length==0" ng-click="savePlaylist(playlist)"><span class="glyphicon glyphicon-envelope"></span></button>
-					</span>
 				</div>
 			</form>
 		</div>
@@ -52,6 +49,7 @@
 				<button class="btn btn-lg btn-link remove-button" ng-click="remove(song)"><span class="glyphicon glyphicon-minus-sign"></span></button>
 			</div>
 		</li>
-		<a href="#!/customize" ng-if="!loading && playlist.length > 0" class="list-group-item customize-button">Customize</a>
 	</ul>
+
+	<a href="#!/customize" ng-if="!loading && playlist.length > 0" class="btn btn-lg btn-success customize-button">Customize</a>
 </div>
