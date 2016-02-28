@@ -1,6 +1,6 @@
 angular.module('gift-tapes')
 
-.controller('UploadPhotoCtrl', function($scope, $window) {
+.controller('UploadPhotoCtrl', function($scope, $window, $q, $http, dataURItoBlob) {
 
 	$('#file_input').on('change', function(event) {
 		var input = document.getElementById('file_input');
@@ -23,7 +23,68 @@ angular.module('gift-tapes')
 	});
 
 	$scope.uploadPicture = function() {
-		
+		var input = document.getElementById('file_input');
+
+		if(!input.files || !input.files[0]) return;
+		var file = input.files[0];
+
+		$http
+			.get('/api/sign_s3', {
+				params: {
+					file_name: 'dummy.png', 
+					file_type: 'image/png' 
+				}
+			})
+			.then(function(resp) {
+				var data = resp.data;
+				if(data.error) 
+					return $q.reject(data.msg);
+				else {
+					return sendToS3(data);
+				}
+			})
+			.then(function(data) {
+
+			});
+
+
+	}
+
+	function sendToS3(data) {
+		var canvas = document.getElementById('preview-canvas');	
+		var dataURI = canvas.toDataURL('image/png');
+		var dataBlob = dataURItoBlob(dataURI);
+
+		/*
+		var fd = new FormData();
+		fd.append('file', dataBlob, 'dummy.png');
+
+		return $http
+			.put(data.signed_request, fd, {
+				transformRequest: angular.identity,
+				headers: { 
+					'x-amz-acl': 'public-read',
+					'Content-Type': 'image/png' 
+				}
+			});
+
+		*/
+		var deferred = $q.defer();
+		var xhr = new XMLHttpRequest();
+		xhr.open("PUT", data.signed_request);
+		xhr.setRequestHeader('x-amz-acl', 'public-read');
+		xhr.setRequestHeader('Content-Type', 'image/png');
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				deferred.resolve();
+			}
+		};
+		xhr.onerror = function() {
+			deferred.reject();
+		};
+		xhr.send(dataBlob);
+
+		return deferred.promise;
 	}
 	
 	function fitAspect(w, h, maxw, maxh) {

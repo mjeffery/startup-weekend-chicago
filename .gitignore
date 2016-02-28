@@ -5,3 +5,5 @@ node_modules
 bower_components
 dist
 .tmp
+npm-debug.log
+run.bat
