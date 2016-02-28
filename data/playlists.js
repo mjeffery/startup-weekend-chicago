@@ -5,7 +5,7 @@ var pg = require('pg');
 var connectionString = process.env.DATABASE_URL + "?ssl=true";
 
 var Playlists = function(){
-    var data = {};
+    var data = {1:{1:{songs: []}}};
     var shares = {};
 
     function addPlaylist(userId){

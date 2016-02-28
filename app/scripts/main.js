@@ -25,7 +25,7 @@ angular.module('gift-tapes', ['ngRoute', 'ngResource', 'ngSanitize'])
 		return $resource('/api/shares/:id', {userId: userId()});
 	})
 	.factory('Playlists', function($resource, userId, playlistId){
-		return $resource('/api/playlists/:id', {userId: userId(), id: playlistId()});
+		return $resource('/api/playlists/:id', {userId: userId(), id: playlistId(), 'spotifyId': '@spotifyId'});
 	})
 	.controller('DoesItWorkCtrl', function($scope) {
 		$scope.itWorks = true;

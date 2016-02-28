@@ -16,6 +16,7 @@
 	</div>
 	<div class="search-results">
 		<div class="search-result" ng-repeat="song in songs|notInList:playlist track by song.id">
+			<button ng-click="add(song)">+</button>
 			<iframe ng-src="{{song.trustedUrl}}" width="250" height="80" frameborder="0" allowtransparency="true"></iframe>
 		</div>
 	</div>
