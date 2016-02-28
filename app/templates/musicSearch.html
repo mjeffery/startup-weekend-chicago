@@ -18,7 +18,9 @@
 					<img src="{{song.imageUrl}}" alt="..." class="img-rounded">
 				</div>
 				<span class="song-title">{{song.title}} <br> <small>{{song.artist}}</small></span>
-				<button class="btn btn-xs btn-link remove-button pull-right" ng-click="remove(song)"><span class="glyphicon glyphicon-minus-sign"></span></button>
+				<div class="pull-right right-button">
+					<button class="btn btn-xs btn-link remove-button" ng-click="remove(song)"><span class="glyphicon glyphicon-minus-sign"></span></button>
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -29,7 +31,9 @@
 				<img src="{{song.imageUrl}}" alt="..." class="img-rounded">
 			</div>
 			<span class="song-title">{{song.title}} <br> <small>{{song.artist}}</small></span>
-			<button ng-click="add(song)" class="btn btn-xs btn-link add-button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+			<div class="pull-right right-button">
+				<button ng-click="add(song)" class="btn btn-xs btn-link add-button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+			</div>
 		</li>
 	</ul>
 </div>

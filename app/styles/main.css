@@ -153,3 +153,12 @@ body {
     width: 55px;
     position: absolute;
 }
+
+.right-button {
+    height:55px;
+    line-height: 55px;
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: white;
+}
