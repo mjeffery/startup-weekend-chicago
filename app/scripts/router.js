@@ -20,6 +20,15 @@ angular.module('gift-tapes')
 					templateUrl: 'templates/upload-picture.html',
 					controller: 'UploadPhotoCtrl'
 				})
+                .when('/playlists/:id', {
+                    templateUrl: 'templates/playlist.html',
+                    controller: 'PlaylistsCtrl',
+                    resolve: {
+                        playlist: function(){
+                            return {songs: [1,2,3]};
+                        }
+                    }
+                })
                 .otherwise({
                     redirectTo: '/'
                 });

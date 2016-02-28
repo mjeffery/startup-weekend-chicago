@@ -1,6 +1,6 @@
 console.log('\'Allo \'Allo!');
 
-angular.module('gift-tapes', ['ngRoute'])
+angular.module('gift-tapes', ['ngRoute', 'ngResource', 'ngSanitize'])
 	.factory('userId', function(){
 		var userId = 1;
 
@@ -9,12 +9,23 @@ angular.module('gift-tapes', ['ngRoute'])
 				userId = id;
 			} else return userId;
 		};
+	}).config(function ($sceProvider) {
+		$sceProvider.enabled(false);
 	})
-	.factory('Shares', function($resource){
-		return $resource('/api/shares/:id', {userId: '@userId'});
+	.factory('playlistId', function(){
+		var playlistId = 1;
+
+		return function(id){
+			if(id){
+				playlistId = id;
+			} else return playlistId;
+		};
 	})
-	.factory('Playlist', function($resource){
-		return $resource('/api/playlists/:id', {userId: '@userId'});
+	.factory('Shares', function($resource, userId){
+		return $resource('/api/shares/:id', {userId: userId()});
+	})
+	.factory('Playlists', function($resource, userId, playlistId){
+		return $resource('/api/playlists/:id', {userId: userId(), id: playlistId()});
 	})
 	.controller('DoesItWorkCtrl', function($scope) {
 		$scope.itWorks = true;
