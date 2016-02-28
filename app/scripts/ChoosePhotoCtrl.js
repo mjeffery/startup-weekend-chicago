@@ -1,6 +1,6 @@
 angular.module('gift-tapes')
 
-.controller('ChoosePhotoCtrl', function($scope, $window, $q, $http, $uibModalInstance, dataURItoBlob) {
+.controller('ChoosePhotoCtrl', function($scope, $window, $q, $http, $uibModalInstance, dataURItoBlob, sendToS3) {
 	$scope.selected = false;
 
 	$uibModalInstance.rendered.then(function() {
@@ -16,6 +16,17 @@ angular.module('gift-tapes')
 			}
 		});
 	});
+
+	$scope.uploadPicture = function() {
+		var canvas = document.getElementById('preview-canvas');	
+		var dataURI = canvas.toDataURL('image/png');
+		var dataBlob = dataURItoBlob(dataURI);
+
+		sendToS3(dataBlob, 'album art.png', 'image/png')
+			.then(function(url) {
+				$scope.$close(url);
+			});
+	}
 
 	function downscale(input, canvas, maxw, maxh) {
 		var deferred = $q.defer();
