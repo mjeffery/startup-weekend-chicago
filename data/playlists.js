@@ -59,9 +59,10 @@ var Playlists = function(){
     }
 
     function createShare(userId, playlistId, email_address, physical_address){
+        console.log("userId: " + userId);
         return Promise.all([
                 doesPlayListExist(userId, playlistId),
-                runQuery('INSERT INTO share (playlist_id, email_address, physical_address) RETURNING id', [playlistId, email_address, physical_address])
+                runQuery('INSERT INTO share (playlist_id, email_address, physical_address) VALUES ($1, $2, $3) RETURNING id', [playlistId, email_address, physical_address])
             ]).then(function(result){
                 return result[1];
             }).catch(function(err){
@@ -71,6 +72,7 @@ var Playlists = function(){
     }
 
     function getShare(id){
+        console.log("ID2: " + id);
         return runQuery('SELECT * FROM share WHERE id = $1', [id]);
     }
 
@@ -98,8 +100,8 @@ var Playlists = function(){
         getPlaylists: getPlaylists,
         getPlaylist: getPlaylist,
         addSong: addSong,
-        createShare: Promise.promisify(createShare),
-        getShare: Promise.promisify(getShare)
+        createShare: createShare,
+        getShare: getShare
     };
 };
 

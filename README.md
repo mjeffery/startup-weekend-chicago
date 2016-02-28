@@ -1,7 +1,7 @@
 # startup-weekend-chicago
 # Make America Great Again
 
-# Do once: git remote add heroku git@github.com:mjeffery/startup-weekend-chicago.git
+# Do once: git remote add heroku https://git.heroku.com/gifttapes.git
 # Do often: npm install
 # To start locally: npm start
 # To push to heroku: git push heroku master

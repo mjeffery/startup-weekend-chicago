@@ -13,6 +13,11 @@ router.use('/playlists', function(req, res, next){
     next();
 });
 
+router.use('/shares', function(req, res, next){
+    req.userId = req.query.userId;
+    next();
+});
+
 router.get('/playlists', function(req, res, next) {
     playlists.getPlaylists(req.userId)
         .then(function(list){
@@ -55,17 +60,22 @@ router.post('/playlists/:id', function(req, res, next){
 });
 
 router.post('/shares/', function(req, res, next) {
-    var id = req.query.playlistId;
-    playlists.createShare(req.userId, id)
+    var playlistId = req.query.playlistId;
+    var email_address = req.query.emailAddress;
+    var physical_address = req.query.physicalAddress;
+    console.log("foo");
+    playlists.createShare(req.userId, playlistId, email_address, physical_address)
         .then(function(id){
             res.json({share: id});
         }, function(err){
+            console.log(err);
             error(res, err);
         });
 });
 
 router.get('/shares/:id', function(req, res, next) {
     var id = req.params.id;
+    console.log("ID: " + id);
     playlists.getShare(id)
         .then(function(list){
             res.json({playlists: list});
