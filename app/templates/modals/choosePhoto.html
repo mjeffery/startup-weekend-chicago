@@ -1,8 +1,17 @@
 <div class="modal-header">
-	<h3 class="modal-title">Choose a Background Photo</h3>
+	<button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h3 class="modal-title">Choose a Background Picture</h3>
 </div>
 <div class="modal-body">
-
+	<div class="preview-area">
+		<canvas id="preview-canvas"></canvas>
+	</div>
+	<div class="select-photo">
+		<input type="file" id="file_input" accept="image/*" />
+	</div>
 </div>
 <div class="modal-footer">
+	<button class="btn btn-primary" ng-click="uploadPicture()">
+		Choose Picture
+	</button>
 </div>
