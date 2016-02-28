@@ -25,6 +25,7 @@ angular.module('gift-tapes')
 				});
 		}
 	};
+	$scope.Playlists = Playlists;
 
 	$scope.$watch('query', function(newVal, oldVal) {
 		$scope.search(newVal);
@@ -33,9 +34,9 @@ angular.module('gift-tapes')
 	$scope.add = function(song) {
 		return Playlists.save({spotifyId:song.id})
 			.$promise
-			.then(function(id){
+			.then(function(){
 				if(!_.some($scope.playlist, {id: song.id }))
-					$scope.playlist.push(song.id);
+					$scope.playlist.push(song);
 			});
 	};
 
