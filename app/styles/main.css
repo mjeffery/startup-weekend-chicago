@@ -52,11 +52,6 @@ body {
   border-width: 0;
 }
 
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
@@ -278,4 +273,34 @@ and (orientation : portrait) {
 
 @media (max-width: 480px) {
     .modal-xs { width: 300px; }
+}
+
+.image-container {
+    width:800px;
+    height:800px;
+    background-color:white;
+    border-radius: 3px;
+}
+
+.menu-title {
+    border-bottom:1px solid #A79C6C;
+    padding-bottom:10px;
+    margin-bottom:30px;
+}
+
+.customize-menu {
+    text-align: left;
+    margin-left: 20px;
+    margin-right: -20px;
+}
+.send-button {
+    width:100%;
+}
+
+.send-button .glyphicon {
+    padding-right:10px;
+}
+
+.jumbotron > hr {
+    border-top-color: #ECCD44;
 }
