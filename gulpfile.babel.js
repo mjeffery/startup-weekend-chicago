@@ -58,7 +58,7 @@ gulp.task('html', ['styles', 'scripts', 'templates'], () => {
 });
 
 gulp.task('templates', () => {
-  return gulp.src('app/templates/*.html')
+  return gulp.src('app/templates/**/*.html')
       .pipe($.htmlmin({collapseWhitespace: true}))
       .pipe(gulp.dest('dist/templates'));
 });
