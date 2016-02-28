@@ -125,18 +125,31 @@ body {
     font-weight:normal;
 }
 
-.cover-art .play-button {
-    position: relative;
-    left: 15px;
+.cover-art {
+    width: 55px;
+    height: 55px;
+    margin-right:20px;
 }
 
-.cover-art .play-button button {
-    z-index:10;
+.cover-art play-button {
+    position: absolute;
+}
+
+.cover-art play-button button {
+    z-index: 10;
+    position:relative;
+    height: 55px;
+    width: 55px;
+    color: white;
+
+}
+
+.cover-art play-button button:hover {
+    color: #bdbdbd;
 }
 
 .cover-art img {
     height: 55px;
     width: 55px;
-    position: relative;
-    right: 30px;
+    position: absolute;
 }
