@@ -1,6 +1,6 @@
 angular.module('gift-tapes')
 
-.directive('playButton', function(soundCloudService) {
+.directive('playButton', function(spotifyService) {
 	var player;
 	return {
 		scope: {
@@ -12,7 +12,7 @@ angular.module('gift-tapes')
 			scope.playAudio = function () {
 				if (scope.actionText === 'Play') {
 					scope.actionText = 'Pause';
-					soundCloudService.player(scope.id).then(function (ret) {
+					spotifyService.player(scope.id).then(function (ret) {
 						player = ret;
 						player.play();
 					});
