@@ -4,7 +4,7 @@ angular.module('gift-tapes')
 	var player;
 	return {
 		scope: {
-			id: '@'
+			id: '@',
 		},
 		templateUrl: 'templates/playButton.html',
 		link: function(scope, elem, attrs) {
