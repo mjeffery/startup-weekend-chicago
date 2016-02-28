@@ -10,7 +10,7 @@ angular.module('gift-tapes')
 		});
 
 		modal.result.then(function(imageUrl) {
-
+			$scope.imageUrl = imageUrl;
 		});
 	};
 
