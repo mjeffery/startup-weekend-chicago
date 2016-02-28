@@ -103,7 +103,7 @@ var Playlists = function(){
     return {
         addPlaylist: Promise.promisify(addPlaylist),
         getPlaylists: getPlaylists,
-        getPlaylist: Promise.promisify(getPlaylist),
+        getPlaylist: getPlaylist,
         addSong: Promise.promisify(addSong),
         createShare: Promise.promisify(createShare),
         getShare: Promise.promisify(getShare)
