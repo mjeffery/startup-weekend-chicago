@@ -1,23 +1,26 @@
 <div ng-controller="MusicSearchCtrl" class="music-search">
-
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<form ng-submit="search(query)" class="form-inline">
-				<div class="input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input class="form-control input-sm" ng-model="query" ng-model-options="{ debounce: 250 }">
-				</div>
-				<button class="send-button btn btn-primary btn-sm pull-right" ng-if="playlist.length > 0" ng-click="savePlaylist(playlist)"><span class="glyphicon glyphicon-pencil"></span></button>
-			</form>
-		</div>
+	<div class="playlist">
+		<h3>Playlist:</h3>
 		<div class="empty-playlist" ng-if="playlist.length < 1">Start adding songs now!</div>
-		<ul class="list-group">
-			<li class="list-group-item" ng-repeat="song in playlist track by song.id">
-				<play-button id="{{song.id}}"></play-button>
-				<span class="song-title">{{song.title}} <br> <small>{{song.artist}}</small></span>
-				<button class="btn btn-xs btn-link remove-button pull-right" ng-click="remove(song)"><span class="glyphicon glyphicon-minus-sign"></span></button>
-			</li>
-		</ul>
+		<div ng-repeat="song in playlist track by song.id">
+			<button class="remove-button" ng-click="remove(song)">-</button>
+			<play-button id="{{song.id}}"></play-button>
+			<span class="song-title">{{song.title}}</span>- {{song.artist}}
+		</div>
+		<button class="send-button" ng-if="playlist.length > 0" ng-click="savePlaylist(playlist)">Send it!</button>
+	</div>
+	<div class="search-bar">
+		<form ng-submit="search(query)">
+			<label>Search for Songs</label>
+			<input ng-model="query" ng-model-options="{ debounce: 250 }">
+		</form>
+	</div>
+	<div class="search-results">
+		<div class="search-result" ng-repeat="song in songs|notInList:playlist track by song.id">
+			<button ng-click="add(song)" class="add-button">+</button>
+			<play-button id="{{song.id}}"></play-button>
+			<span class="song-title">{{song.title}}</span> -- {{song.artist}}
+		</div>
 	</div>
 	<ul class="list-group search-results">
 		<li class="list-group-item" ng-repeat="song in songs|notInList:playlist track by song.id">

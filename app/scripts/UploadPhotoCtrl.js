@@ -12,12 +12,22 @@ angular.module('gift-tapes')
 			img.src = $window.URL.createObjectURL(input.files[0]);
 			
 			img.onload = function() {
+				//DOWNSCALING
 				var size = fitAspect(img.width, img.height, 500, 1000);
 
 				canvas.width = size.w;
 				canvas.height = size.h;
 
 				ctx.drawImage(img, 0, 0, size.w, size.h);
+
+				//GREYSCALE
+				var data = ctx.getImageData(0, 0, size.w, size.h).data;
+				for(var i = 0; i < data.length; i += 4) {
+					var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+					data[i] = data[i+1] = data[i+2] = brightness;
+				}
+
+				ctx.putImageData(imageData, 0, 0);
 			}
 		}
 	});
@@ -49,6 +59,8 @@ angular.module('gift-tapes')
 
 
 	}
+
+	function 
 
 	function sendToS3(data) {
 		var canvas = document.getElementById('preview-canvas');	
